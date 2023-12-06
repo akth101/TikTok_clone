@@ -5,7 +5,7 @@ import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
 import 'package:tiktok/features/tab_navigation/widgets/nav_tab.dart';
 import 'package:tiktok/features/tab_navigation/widgets/post_video_button.dart';
-import 'package:tiktok/features/tab_navigation/widgets/stf_screen.dart';
+import 'package:tiktok/features/videos/video_timeline_screen.dart';
 
 class MainNavigationScreen extends StatefulWidget {
   const MainNavigationScreen({super.key});
@@ -18,45 +18,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   int _selectedIndex = 0;
 
   final screens = [
-    StfScreren(key: GlobalKey()),
-    StfScreren(key: GlobalKey()),
     Container(),
-    StfScreren(key: GlobalKey()),
-    StfScreren(key: GlobalKey()),
-
-    // const Center(
-    //   child: Text(
-    //     'Home',
-    //     style: TextStyle(
-    //       fontSize: 49,
-    //     ),
-    //   ),
-    // ),
-    // const Center(
-    //   child: Text(
-    //     'Discover',
-    //     style: TextStyle(
-    //       fontSize: 49,
-    //     ),
-    //   ),
-    // ),
-    // Container(),
-    // const Center(
-    //   child: Text(
-    //     'Inbox',
-    //     style: TextStyle(
-    //       fontSize: 49,
-    //     ),
-    //   ),
-    // ),
-    // const Center(
-    //   child: Text(
-    //     'Profile',
-    //     style: TextStyle(
-    //       fontSize: 49,
-    //     ),
-    //   ),
-    // ),
   ];
 
   void _onTap(int index) {
@@ -83,7 +45,19 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         children: [
           Offstage(
             offstage: _selectedIndex != 0,
-            child: const StfScreren(),
+            child: const VideoTimelineScreen(),
+          ),
+          Offstage(
+            offstage: _selectedIndex != 1,
+            child: const VideoTimelineScreen(),
+          ),
+          Offstage(
+            offstage: _selectedIndex != 3,
+            child: const VideoTimelineScreen(),
+          ),
+          Offstage(
+            offstage: _selectedIndex != 4,
+            child: const VideoTimelineScreen(),
           ),
         ],
       ),

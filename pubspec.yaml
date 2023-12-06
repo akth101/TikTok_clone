@@ -10,6 +10,8 @@ dependencies:
   flutter:
     sdk: flutter
   font_awesome_flutter: ^10.3.0
+  video_player: ^2.8.1
+  visibility_detector: 0.3.3
 
 # font_awesome_flutter: 10.3.0
 
@@ -20,3 +22,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+  - assets/videos/IMG_9286.MOV
