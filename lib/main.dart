@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
+import 'package:tiktok/features/inbox/activity_screen.dart';
 import 'package:tiktok/features/onboarding/interests_screen.dart';
 import 'package:tiktok/features/sign_up_screen.dart';
 import 'package:tiktok/features/tab_navigation/main_navigation_screen.dart';
@@ -17,6 +18,8 @@ class TikTokApp extends StatelessWidget {
     return MaterialApp(
       title: 'TikTok Clone',
       theme: ThemeData(
+        // splashColor: Colors.transparent,
+        // highlightColor: Colors.transparent,
         scaffoldBackgroundColor: Colors.white,
         primaryColor: const Color(0xFFE9435A),
         appBarTheme: const AppBarTheme(
