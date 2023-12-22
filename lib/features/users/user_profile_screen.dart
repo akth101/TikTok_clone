@@ -14,6 +14,7 @@ class UserProfileScreen extends StatefulWidget {
 }
 
 class _UserProfileScreenState extends State<UserProfileScreen> {
+  //[Question]context를 매개변수로 안 넘겨주니까 페이지 변환이 안됨 왜지?
   void _onGearPressed(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
