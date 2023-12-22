@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+//Widget catalog에 가면 우리가 안 써본 위젯들이 많이 있으니 알아보시라
+
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
