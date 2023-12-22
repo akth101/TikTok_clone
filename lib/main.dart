@@ -55,3 +55,10 @@ class TikTokApp extends StatelessWidget {
     );
   }
 }
+
+//layoutBuilder
+// 이걸 Scaffold의 body에 넣는다면 화면의 크기를 알려줄 것이다.
+// 그게 가질 수 있는 width의 최대값이니까
+// 현재 어느정도까지 커질 수 있는지 알려주는 게 역할
+//화면 크기가 아닌 그 부모의 크기를 알고 싶을 때 유용
+
