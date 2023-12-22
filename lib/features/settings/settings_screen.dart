@@ -1,8 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
+
+  @override
+  State<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
+  bool _notifications = false;
+
+  void _onNotificationChanged(bool? newValue) {
+    if (newValue == null) return;
+    setState(() {
+      _notifications = newValue;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,6 +26,30 @@ class SettingsScreen extends StatelessWidget {
       ),
       body: ListView(
         children: [
+          //안드로이드냐 ios냐에 따라 자동으로 바꿔줌
+          Switch.adaptive(
+            value: _notifications,
+            onChanged: _onNotificationChanged,
+          ),
+          CupertinoSwitch(
+            value: _notifications,
+            onChanged: _onNotificationChanged,
+          ),
+          Switch(
+            value: _notifications,
+            onChanged: _onNotificationChanged,
+          ),
+          Checkbox(
+            activeColor: Colors.black,
+            value: _notifications,
+            onChanged: _onNotificationChanged,
+          ),
+          CheckboxListTile(
+            activeColor: Colors.black,
+            value: _notifications,
+            onChanged: _onNotificationChanged,
+            title: const Text("Enable Notifications"),
+          ),
           ListTile(
             //showDatePicker가 제일 인상깊은 점은
             //DateTime이 Futre에서 반환될 수도 있다는 것
