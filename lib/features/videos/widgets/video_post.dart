@@ -69,6 +69,9 @@ class _VideoPostState extends State<VideoPost>
   }
 
   void _onVisibilityChanged(VisibilityInfo info) {
+    //모든 statefulWidget은 mounted라는 프로퍼티가 있다.
+    //Widget이 Mount되었는지 아닌지를 알려줌
+    if (!mounted) return;
     if (info.visibleFraction == 1 &&
         !_isPaused &&
         !_videoPlayerController.value.isPlaying) {
@@ -190,7 +193,8 @@ class _VideoPostState extends State<VideoPost>
                   backgroundColor: Colors.black,
                   foregroundColor: Colors.white,
                   foregroundImage: NetworkImage(
-                      "https://avatars.githubusercontent.com/u/113513607?v=4"),
+                    "https://avatars.githubusercontent.com/u/113513607?v=4",
+                  ),
                   child: Text("니꼬"),
                 ),
                 Gaps.v24,
