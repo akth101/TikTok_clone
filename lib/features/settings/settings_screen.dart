@@ -13,24 +13,42 @@ class SettingsScreen extends StatelessWidget {
       body: ListView(
         children: [
           ListTile(
-            //ShowAboutDialog에 들어가서 View License를 클릭함현
-            //현재 사용 중인 모든 오픈소스 소프트웨어 관련 라이센스가 들어가 있다.
-            //이거 진짜 미쳤다.
-            //이건 선택사항이 아니라 꼭 해야 되는 거임
-            onTap: () => showAboutDialog(
-              context: context,
-              applicationVersion: "1.0",
-              applicationLegalese: "All rights reserved. Please dont copy me",
-            ),
-            title: const Text(
-              "About",
-              style: TextStyle(
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            subtitle: const Text("About this app..."),
+            //showDatePicker가 제일 인상깊은 점은
+            //DateTime이 Futre에서 반환될 수도 있다는 것
+
+            onTap: () async {
+              final date = await showDatePicker(
+                context: context,
+                initialDate: DateTime.now(),
+                firstDate: DateTime(1980),
+                lastDate: DateTime(2030),
+              );
+              print(date);
+              final time = await showTimePicker(
+                context: context,
+                initialTime: TimeOfDay.now(),
+              );
+              print(time);
+              final booking = await showDateRangePicker(
+                context: context,
+                firstDate: DateTime(1980),
+                lastDate: DateTime(2030),
+                builder: (context, child) {
+                  return Theme(
+                    data: ThemeData(
+                      appBarTheme: const AppBarTheme(
+                        foregroundColor: Colors.white,
+                        backgroundColor: Colors.black,
+                      ),
+                    ),
+                    child: child!,
+                  );
+                },
+              );
+              print(booking);
+            },
+            title: const Text("What is your birthday"),
           ),
-          //위의 onTap, title, subtitle 등등을 축약해놓은 게 바로 AboutListTile
           const AboutListTile(),
         ],
       ),
