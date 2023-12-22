@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tiktok/constants/breakpoints.dart';
 import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
 
@@ -40,6 +41,8 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    print(width);
     return DefaultTabController(
       length: tabs.length,
       child: Scaffold(
@@ -78,8 +81,8 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                 Sizes.size6,
               ),
               itemCount: 20,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: width > Breakpoints.md ? 5 : 2,
                 crossAxisSpacing: Sizes.size10,
                 mainAxisSpacing: Sizes.size10,
                 childAspectRatio: 9 / 21,
@@ -96,10 +99,11 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     child: AspectRatio(
                       aspectRatio: 9 / 16,
                       child: FadeInImage.assetNetwork(
-                          fit: BoxFit.fitHeight,
-                          placeholder: "assets/images/landscape.avif",
-                          image:
-                              "https://images.unsplash.com/photo-1701687771089-bf180db7060f?q=80&w=2130&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"),
+                        fit: BoxFit.fitHeight,
+                        placeholder: "assets/images/landscape.avif",
+                        image:
+                            "https://images.unsplash.com/photo-1701687771089-bf180db7060f?q=80&w=2130&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                      ),
                     ),
                   ),
                   Gaps.v10,

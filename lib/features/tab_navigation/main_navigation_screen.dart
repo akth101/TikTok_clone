@@ -20,6 +20,10 @@ class MainNavigationScreen extends StatefulWidget {
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
   int _selectedIndex = 1;
 
+  //대부분의 browser에서는 소리가 포함된 영상을 즉시 재생할 수 없게 한다.
+  //광고회사들이 소리까지 자동으로 재생시켜서 광고를 때리는 바람에 그렇다.
+  //소리가 없는 동영상은 가능한데, 소리가 있는 동영상은 바로 못한다.
+
   final screens = [
     Container(),
   ];

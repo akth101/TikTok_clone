@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/constants/gaps.dart';
@@ -45,6 +46,10 @@ class _VideoPostState extends State<VideoPost>
   void _initVideoPlayer() async {
     await _videoPlayerController.initialize();
     await _videoPlayerController.setLooping(true);
+    //k를 입력하면 framework가 갖고 있는 모든 Constant를 확인할 수 있다.
+    if (kIsWeb) {
+      await _videoPlayerController.setVolume(0);
+    }
     setState(() {});
     _videoPlayerController.addListener(_onVideoChange);
   }
