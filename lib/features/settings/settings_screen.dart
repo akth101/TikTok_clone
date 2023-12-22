@@ -10,26 +10,18 @@ class SettingsScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Settings"),
       ),
-      body: ListWheelScrollView(
-        //itemExtent는 리스트 안의 아이템 높이를 설정해줌
-        itemExtent: 200,
-        //돋보기 사용 가능
-        useMagnifier: true,
-        //확대 비율 설정
-        magnification: 1.5,
-        //얼마나 원형일 것이냐
-        diameterRatio: 10,
-        offAxisFraction: 1.2,
+      body: const Column(
         children: [
-          for (var x in [1, 2, 3, 1, 1, 1, 1, 1, 1])
-            FractionallySizedBox(
-              widthFactor: 1,
-              child: Container(
-                color: Colors.teal,
-                alignment: Alignment.center,
-                child: const Text("pick me"),
-              ),
-            ),
+          CupertinoActivityIndicator(
+            radius: 40,
+            animating: false,
+          ),
+          CircularProgressIndicator(),
+          //유저가 어떤 os를 사용하는지 인식하고 자동으로 바꿔줌
+          //조건문 그런 거 필요없음. 그냥 이거 하나면 알아서 해줌
+          //ios simulator 쓴다? 그러면 자동으로 쿠퍼티노 스타일로 바꿔줌
+          //미쳤다.
+          CircularProgressIndicator.adaptive(),
         ],
       ),
     );
