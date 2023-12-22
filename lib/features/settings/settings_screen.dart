@@ -128,6 +128,37 @@ class _SettingsScreenState extends State<SettingsScreen> {
               );
             },
           ),
+          ListTile(
+            title: const Text("Log out (iOS / Bottom)"),
+            textColor: Colors.red,
+            onTap: () {
+              //showCupertinoDialog랑 차이점은
+              //바깥 배경을 누르면 팝업창이 사라진다는 것과 모션
+              showCupertinoModalPopup(
+                context: context,
+                builder: (context) => CupertinoActionSheet(
+                  title: const Text("Are you sure?"),
+                  message: const Text("plz donttt gooo"),
+                  actions: [
+                    CupertinoActionSheetAction(
+                      isDefaultAction: true,
+                      onPressed: () {},
+                      child: const Text(
+                        "Not logout",
+                      ),
+                    ),
+                    CupertinoActionSheetAction(
+                      onPressed: () {},
+                      isDestructiveAction: true,
+                      child: const Text(
+                        "Yes plz",
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
           const AboutListTile(),
         ],
       ),
