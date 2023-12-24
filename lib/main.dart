@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
 import 'package:tiktok/features/inbox/activity_screen.dart';
@@ -46,8 +47,7 @@ class TikTokApp extends StatelessWidget {
       //모든 디자인 관련한 부분은 여기다 때려넣는 게 가장 좋다. 그러면 일일이
       //페이지마다 색깔 설정할 필요가 없어진다.
       theme: ThemeData(
-        // splashColor: Colors.transparent,
-        // highlightColor: Colors.transparent,
+        textTheme: GoogleFonts.itimTextTheme(),
         brightness: Brightness.light,
         scaffoldBackgroundColor: Colors.white,
         bottomAppBarTheme: BottomAppBarTheme(
@@ -67,6 +67,9 @@ class TikTokApp extends StatelessWidget {
       darkTheme: ThemeData(
         //text 색깔을 사용자가 설정하지 않은 텍스트들을 모조리
         //하얀색으로 바꿔줌. 미쳤다 미쳤어
+        textTheme: GoogleFonts.itimTextTheme(
+          ThemeData(brightness: Brightness.dark).textTheme,
+        ),
         brightness: Brightness.dark,
         scaffoldBackgroundColor: Colors.black,
         bottomAppBarTheme: BottomAppBarTheme(
