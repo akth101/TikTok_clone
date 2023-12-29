@@ -101,12 +101,15 @@ class SignUpScreen extends StatelessWidget {
               ),
             ),
           ),
-          bottomNavigationBar: BottomAppBar(
-            elevation: 2,
+          bottomNavigationBar: Container(
+            // elevation: 2,
             //darkMode일 때 color가 Null이면 자동을 dartTheme이 사용됨
             color: isDarkMode(context) ? null : Colors.grey.shade50,
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: Sizes.size16),
+              padding: const EdgeInsets.only(
+                top: Sizes.size32,
+                bottom: Sizes.size64,
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

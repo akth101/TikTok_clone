@@ -119,7 +119,9 @@ class _InterestsScreenState extends State<InterestsScreen> {
                 const Text(
                   'Choose your interests',
                   style: TextStyle(
-                      fontSize: Sizes.size40, fontWeight: FontWeight.bold),
+                    fontSize: Sizes.size40,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 Gaps.v20,
                 const Text(
@@ -142,25 +144,22 @@ class _InterestsScreenState extends State<InterestsScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        elevation: 1,
-        child: Padding(
-          padding: const EdgeInsets.only(
-              // bottom: Sizes.size10,
-              // top: Sizes.size10,
-              // left: Sizes.size24,
-              // right: Sizes.size24,
-              ),
-          child: CupertinoButton(
-            onPressed: () {
-              _onNextTap();
-            },
-            color: Theme.of(context).primaryColor,
-            child: const Text(
-              'Next',
-              style: TextStyle(
-                fontSize: Sizes.size20,
-              ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.only(
+            // bottom: Sizes.size10,
+            // top: Sizes.size10,
+            // left: Sizes.size24,
+            // right: Sizes.size24,
+            ),
+        child: CupertinoButton(
+          onPressed: () {
+            _onNextTap();
+          },
+          color: Theme.of(context).primaryColor,
+          child: const Text(
+            'Next',
+            style: TextStyle(
+              fontSize: Sizes.size20,
             ),
           ),
         ),

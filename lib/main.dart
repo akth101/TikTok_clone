@@ -47,6 +47,7 @@ class TikTokApp extends StatelessWidget {
       //모든 디자인 관련한 부분은 여기다 때려넣는 게 가장 좋다. 그러면 일일이
       //페이지마다 색깔 설정할 필요가 없어진다.
       theme: ThemeData(
+        useMaterial3: true,
         textTheme: Typography.blackCupertino,
         brightness: Brightness.light,
         scaffoldBackgroundColor: Colors.white,
@@ -60,6 +61,7 @@ class TikTokApp extends StatelessWidget {
         appBarTheme: const AppBarTheme(
           foregroundColor: Colors.black,
           backgroundColor: Colors.white,
+          surfaceTintColor: Colors.white,
           titleTextStyle: TextStyle(
             color: Colors.black,
             fontSize: Sizes.size16 + Sizes.size2,
@@ -76,6 +78,7 @@ class TikTokApp extends StatelessWidget {
         ),
       ),
       darkTheme: ThemeData(
+        useMaterial3: true,
         textTheme: Typography.whiteMountainView,
         textSelectionTheme: const TextSelectionThemeData(
           cursorColor: Color(0xFFE9435A),
@@ -88,12 +91,18 @@ class TikTokApp extends StatelessWidget {
         primaryColor: const Color(0xFFE9435A),
         appBarTheme: AppBarTheme(
           backgroundColor: Colors.grey.shade900,
+          surfaceTintColor: Colors.white,
+          titleTextStyle: const TextStyle(
+            color: Colors.black,
+            fontSize: Sizes.size16 + Sizes.size2,
+            fontWeight: FontWeight.w600,
+          ),
         ),
         tabBarTheme: const TabBarTheme(
           indicatorColor: Colors.white,
         ),
       ),
-      home: const MainNavigationScreen(),
+      home: const SignUpScreen(),
     );
   }
 }
@@ -104,3 +113,10 @@ class TikTokApp extends StatelessWidget {
 // 현재 어느정도까지 커질 수 있는지 알려주는 게 역할
 //화면 크기가 아닌 그 부모의 크기를 알고 싶을 때 유용
 //전체 화면 크기는 MediaQuery로, 부모의 크기는 layoutBuilder로
+
+
+//ThemeData에서 useMaterial3: true로 만들어주면 
+//material3 쓰는 걸로 설정할 수 있다.
+//bottomAppBar를 material3에서는 못 쓴다는 게 핵심
+//기본 색이 연보라색으로 바뀌니까 이거 주의해야 되고
+//결국 이 두개가 핵심이라 따로 강의 내용 전부를 이 코드에 적용시키진 않았다.
