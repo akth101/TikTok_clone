@@ -120,3 +120,11 @@ class TikTokApp extends StatelessWidget {
 //bottomAppBar를 material3에서는 못 쓴다는 게 핵심
 //기본 색이 연보라색으로 바뀌니까 이거 주의해야 되고
 //결국 이 두개가 핵심이라 따로 강의 내용 전부를 이 코드에 적용시키진 않았다.
+
+
+//각 위젯의 컬러를 일일이 정했더니 페이지 하나 만들 때마다 지쳐서 노이로제 걸릴 것 같다.
+//그래서 main.dart에서 theme을 통해 최상위 부모 위젯에서 미리 설정해놓은 색깔을 가져다썼다.
+//그런데 Themedata에 들어가는 파라미터가 한둘이여야지.. 이것도 관리하기 너무 싫다.
+//그래서 flex_color_scheme을 사용할 것이다. 진작 좀 가르쳐주지
+//themesplayground에서 미리 싸악 볼수도 있음
+//심지어 theme를 커스터마이즈할수도 있음 미쳤다
