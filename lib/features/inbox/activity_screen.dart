@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
 import 'package:tiktok/features/onboarding/tutorial_screen.dart';
+import 'package:tiktok/utils.dart';
 
 class ActivityScreen extends StatefulWidget {
   const ActivityScreen({super.key});
@@ -83,6 +84,8 @@ class _ActivityScreenState extends State<ActivityScreen>
 
   @override
   Widget build(BuildContext context) {
+    final isDark = isDarkMode(context);
+
     return Scaffold(
       appBar: AppBar(
         title: GestureDetector(
@@ -164,7 +167,7 @@ class _ActivityScreenState extends State<ActivityScreen>
                       width: Sizes.size52,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Colors.white,
+                        color: isDark ? Colors.grey.shade800 : Colors.white,
                         border: Border.all(
                           color: Colors.grey.shade400,
                           width: Sizes.size1,
@@ -173,17 +176,16 @@ class _ActivityScreenState extends State<ActivityScreen>
                       child: const Center(
                         child: FaIcon(
                           FontAwesomeIcons.bell,
-                          color: Colors.black,
                         ),
                       ),
                     ),
                     title: RichText(
                       text: TextSpan(
                         text: "Account updates:",
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: Sizes.size16,
-                          color: Colors.black,
+                          color: isDark ? null : Colors.black,
                         ),
                         children: [
                           const TextSpan(
@@ -216,12 +218,14 @@ class _ActivityScreenState extends State<ActivityScreen>
               dismissible: true,
               onDismiss: _toggleAnimations,
             ),
+          //별거아님 그냥 이쪽으로 쓩 저쪽으로 쓩 원하는 위젯을 옮기는 애니메이션을
+          //구현해주는 클래스임
           SlideTransition(
             position: _panelAnimation,
             child: Container(
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
+              decoration: BoxDecoration(
+                color: Theme.of(context).appBarTheme.backgroundColor,
+                borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(Sizes.size4),
                   bottomRight: Radius.circular(Sizes.size4),
                 ),
@@ -233,9 +237,9 @@ class _ActivityScreenState extends State<ActivityScreen>
                     ListTile(
                       title: Row(
                         children: [
-                          FaIcon(
+                          //[질문]여기서 FaIcon을 Icon으로 바꾸면 왜 텍스트들이 정렬되는 거지? 뭔말인지 모르겟으면 한번 바꿔보셈.
+                          Icon(
                             tab["icon"],
-                            color: Colors.black,
                             size: Sizes.size16,
                           ),
                           Gaps.h20,
@@ -257,3 +261,9 @@ class _ActivityScreenState extends State<ActivityScreen>
     );
   }
 }
+
+
+//[질문]다크모드를 적용하는 방법은 아래의 세가지와 같다. 그러면 이 셋의 차이점은?
+//1. isDark ? null : Colors.grey.shade500
+//2. Theme.of(context).primarycolor.appBarColor
+//3. 아무것도 안하고 그냥 가만히 있기

@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/constants/breakpoints.dart';
 import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
+import 'package:tiktok/utils.dart';
 
 final tabs = [
   "Top",
@@ -57,6 +58,11 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               controller: _textEditingController,
               onChanged: _onSearchChanged,
               onSubmitted: _onSearchSubmitted,
+              //MaterialApp ThemeData에서 Cupertino위젯을 수정할 수는 없어서
+              //이런 식으로 다크 모드를 적용했다.
+              style: TextStyle(
+                color: isDarkMode(context) ? Colors.white : Colors.black,
+              ),
             ),
           ),
           bottom: TabBar(
@@ -64,9 +70,9 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
             splashFactory: NoSplash.splashFactory,
             padding: const EdgeInsets.symmetric(horizontal: Sizes.size16),
             isScrollable: true,
-            indicatorColor: Colors.black,
-            labelColor: Colors.black,
-            unselectedLabelColor: Colors.grey.shade500,
+            indicatorColor: Theme.of(context).tabBarTheme.indicatorColor,
+            // labelColor: Colors.black,
+            // unselectedLabelColor: Colors.grey.shade500,
             labelStyle: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: Sizes.size16,
@@ -128,41 +134,43 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       overflow: TextOverflow.ellipsis,
                     ),
                     Gaps.v5,
-                    if (constriants.maxWidth < 200 ||
-                        constriants.maxWidth > 250)
-                      DefaultTextStyle(
-                        style: TextStyle(
-                          color: Colors.grey.shade600,
-                          fontWeight: FontWeight.w600,
-                        ),
-                        child: Row(
-                          children: [
-                            const CircleAvatar(
-                              radius: 16,
-                              backgroundImage: NetworkImage(
-                                "https://ichef.bbci.co.uk/news/800/cpsprodpb/D42F/production/_116391345_tes1.png",
-                              ),
-                            ),
-                            Gaps.h10,
-                            const Expanded(
-                              child: Text(
-                                "My avatar is going to be very long",
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            Gaps.h4,
-                            FaIcon(
-                              FontAwesomeIcons.heart,
-                              color: Colors.grey.shade600,
-                            ),
-                            Gaps.h2,
-                            const Text(
-                              "2.5M",
-                            ),
-                          ],
-                        ),
+                    // if (constriants.maxWidth < 200 ||
+                    //     constriants.maxWidth > 250)
+                    DefaultTextStyle(
+                      style: TextStyle(
+                        color: isDarkMode(context)
+                            ? Colors.grey.shade300
+                            : Colors.grey.shade500,
+                        fontWeight: FontWeight.w600,
                       ),
+                      child: Row(
+                        children: [
+                          const CircleAvatar(
+                            radius: 16,
+                            backgroundImage: NetworkImage(
+                              "https://ichef.bbci.co.uk/news/800/cpsprodpb/D42F/production/_116391345_tes1.png",
+                            ),
+                          ),
+                          Gaps.h10,
+                          const Expanded(
+                            child: Text(
+                              "My avatar is going to be very long",
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          Gaps.h4,
+                          FaIcon(
+                            FontAwesomeIcons.heart,
+                            color: Colors.grey.shade600,
+                          ),
+                          Gaps.h2,
+                          const Text(
+                            "2.5M",
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),

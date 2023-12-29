@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tiktok/constants/sizes.dart';
+import 'package:tiktok/utils.dart';
 
 class FormButton extends StatelessWidget {
   const FormButton({
@@ -18,7 +19,12 @@ class FormButton extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(Sizes.size5),
           color:
-              disabled ? Colors.grey.shade400 : Theme.of(context).primaryColor,
+              //미친 삼항연산자를 이렇게도 사용할 수 있는 거였어? 이거 이해 못함..
+              disabled
+                  ? isDarkMode(context)
+                      ? Colors.grey.shade800
+                      : Colors.grey.shade300
+                  : Theme.of(context).primaryColor,
         ),
         duration: const Duration(milliseconds: 300),
         child: AnimatedDefaultTextStyle(

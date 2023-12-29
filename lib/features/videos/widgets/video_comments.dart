@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
+import 'package:tiktok/utils.dart';
 
 class VideoComments extends StatefulWidget {
   const VideoComments({super.key});
@@ -34,6 +35,7 @@ class _VideoCommentsState extends State<VideoComments> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = isDarkMode(context);
     final size = MediaQuery.of(context).size;
     return Container(
       height: size.height * 0.7,
@@ -44,9 +46,12 @@ class _VideoCommentsState extends State<VideoComments> {
         ),
       ),
       child: Scaffold(
+        backgroundColor: isDark ? null : Colors.grey.shade50,
         resizeToAvoidBottomInset: false,
-        backgroundColor: Colors.grey.shade100,
         appBar: AppBar(
+          //appbar의 backgroundcolor를 하드코딩하면
+          //main.dart에서 만들었던 appBarTheme을 무시해버린다.
+          backgroundColor: isDark ? null : Colors.white,
           automaticallyImplyLeading: false,
           title: const Text("22796 comments"),
           actions: [
@@ -74,15 +79,16 @@ class _VideoCommentsState extends State<VideoComments> {
                   ),
                   separatorBuilder: (context, index) => Gaps.v20,
                   itemCount: 10,
-                  itemBuilder: (context, index) => const Row(
+                  itemBuilder: (context, index) => Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       CircleAvatar(
                         radius: 18,
-                        child: Text("니꼬"),
+                        backgroundColor: isDark ? Colors.grey.shade500 : null,
+                        child: const Text("니꼬"),
                       ),
                       Gaps.h10,
-                      Expanded(
+                      const Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -100,7 +106,7 @@ class _VideoCommentsState extends State<VideoComments> {
                         ),
                       ),
                       Gaps.h10,
-                      Column(
+                      const Column(
                         children: [
                           FaIcon(
                             FontAwesomeIcons.heart,
@@ -119,11 +125,18 @@ class _VideoCommentsState extends State<VideoComments> {
                   ),
                 ),
               ),
+              //stack 클래스에서만 쓰일 수 있으며 stack 클래스의 자식 위젯들의
+              //위치를 조정할 때 쓰인다.
+              //bottom 파라미터값 간단히 조정해보면 바로 뭔말인지 알게 된다.
               Positioned(
                 bottom: 0,
                 width: size.width,
                 child: BottomAppBar(
-                  color: Colors.white,
+                  //원래 white color가 아래처럼 적용되고 있었다.
+                  //그래서 maind.dart에서 appBartheme이 있어도 개무시하고
+                  //항상 white였는데 이걸 지워버리니까 appBarTheme에 따라
+                  //움직이게 된다.
+                  // color: Colors.white,
                   child: Row(
                     children: [
                       CircleAvatar(
@@ -151,7 +164,9 @@ class _VideoCommentsState extends State<VideoComments> {
                                 borderSide: BorderSide.none,
                               ),
                               filled: true,
-                              fillColor: Colors.grey.shade300,
+                              fillColor: isDark
+                                  ? Colors.grey.shade800
+                                  : Colors.grey.shade200,
                               contentPadding: const EdgeInsets.symmetric(
                                 vertical: Sizes.size10,
                                 horizontal: Sizes.size12,
@@ -162,14 +177,31 @@ class _VideoCommentsState extends State<VideoComments> {
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    FaIcon(FontAwesomeIcons.at,
-                                        color: Colors.grey.shade900),
+                                    //main.dart에서 iconTheme을 이용하면
+                                    //좀더 나았을 것이다. 이렇게 하드코딩 안해줘도 됨.
+                                    //플러터의 장점이 색깔을 전부 근본 클래스에서
+                                    //지정해줄 수 있는 거라고 하네 다른 건 안된다는 이야긴가
+                                    //[질문]TabBar에서 했던 것처럼 Theme.of(context)를 적용시킬 수도 있고, 가만히 냅두면 알아서 적용되기도 한다는데 둘의 차이점이 뭐지?
+                                    FaIcon(
+                                      FontAwesomeIcons.at,
+                                      color: isDark
+                                          ? Colors.grey.shade500
+                                          : Colors.grey.shade900,
+                                    ),
                                     Gaps.h14,
-                                    FaIcon(FontAwesomeIcons.gift,
-                                        color: Colors.grey.shade900),
+                                    FaIcon(
+                                      FontAwesomeIcons.gift,
+                                      color: isDark
+                                          ? Colors.grey.shade500
+                                          : Colors.grey.shade900,
+                                    ),
                                     Gaps.h14,
-                                    FaIcon(FontAwesomeIcons.faceSmile,
-                                        color: Colors.grey.shade900),
+                                    FaIcon(
+                                      FontAwesomeIcons.faceSmile,
+                                      color: isDark
+                                          ? Colors.grey.shade500
+                                          : Colors.grey.shade900,
+                                    ),
                                     Gaps.h14,
                                     if (_isWriting)
                                       GestureDetector(

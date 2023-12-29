@@ -47,13 +47,16 @@ class TikTokApp extends StatelessWidget {
       //모든 디자인 관련한 부분은 여기다 때려넣는 게 가장 좋다. 그러면 일일이
       //페이지마다 색깔 설정할 필요가 없어진다.
       theme: ThemeData(
-        textTheme: GoogleFonts.itimTextTheme(),
+        textTheme: Typography.blackCupertino,
         brightness: Brightness.light,
         scaffoldBackgroundColor: Colors.white,
         bottomAppBarTheme: BottomAppBarTheme(
           color: Colors.grey.shade50,
         ),
         primaryColor: const Color(0xFFE9435A),
+        textSelectionTheme: const TextSelectionThemeData(
+          cursorColor: Color(0xFFE9435A),
+        ),
         appBarTheme: const AppBarTheme(
           foregroundColor: Colors.black,
           backgroundColor: Colors.white,
@@ -63,21 +66,34 @@ class TikTokApp extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
+        tabBarTheme: TabBarTheme(
+          indicatorColor: Colors.black,
+          labelColor: Colors.black,
+          unselectedLabelColor: Colors.grey.shade500,
+        ),
+        listTileTheme: const ListTileThemeData(
+          iconColor: Colors.black,
+        ),
       ),
       darkTheme: ThemeData(
-        //text 색깔을 사용자가 설정하지 않은 텍스트들을 모조리
-        //하얀색으로 바꿔줌. 미쳤다 미쳤어
-        textTheme: GoogleFonts.itimTextTheme(
-          ThemeData(brightness: Brightness.dark).textTheme,
+        textTheme: Typography.whiteMountainView,
+        textSelectionTheme: const TextSelectionThemeData(
+          cursorColor: Color(0xFFE9435A),
         ),
         brightness: Brightness.dark,
         scaffoldBackgroundColor: Colors.black,
         bottomAppBarTheme: BottomAppBarTheme(
-          color: Colors.grey.shade800,
+          color: Colors.grey.shade900,
         ),
         primaryColor: const Color(0xFFE9435A),
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.grey.shade900,
+        ),
+        tabBarTheme: const TabBarTheme(
+          indicatorColor: Colors.white,
+        ),
       ),
-      home: const SignUpScreen(),
+      home: const MainNavigationScreen(),
     );
   }
 }
