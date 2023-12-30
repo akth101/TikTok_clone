@@ -1,3 +1,5 @@
+// import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/constants/gaps.dart';
@@ -12,21 +14,37 @@ class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
 
   void _onSignUpTap(BuildContext context) async {
-    //push는 future를 리턴하기 때문에 결과를 await할 수 있음
-    //pop에서 뭔가 데이터를 보냈다면 이렇게 받을 수 있음
     final result = await Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => const LoginScreen()));
     print(result);
-
-    //유저가 이 페이지로 돌아왔는지 알고 싶으면 그냥 이렇게 하면 됨
-    await Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const LoginScreen()));
-    print("user come back");
   }
 
   void _onEmailTap(BuildContext context) {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const UserNameScreen()));
+    Navigator.of(context).push(
+      //pageRouteBuilder는 화면 전환 애니메이션을 미세조정할 수 있게 해 준다.
+      PageRouteBuilder(
+        transitionDuration: const Duration(seconds: 1),
+        reverseTransitionDuration: const Duration(seconds: 1),
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            const UserNameScreen(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          final offsetAnimation =
+              //offset에서 x축은 첫 번째, y축은 두 번째
+              //-1은 100퍼센트 위로, 1은 100퍼센트 아래로라는 뜻
+              Tween(begin: const Offset(0, -1), end: Offset.zero)
+                  .animate(animation);
+          final opacityAnimation =
+              Tween(begin: 0.5, end: 0.8).animate(animation);
+          return SlideTransition(
+            position: offsetAnimation,
+            child: FadeTransition(
+              opacity: animation,
+              child: child,
+            ),
+          );
+        },
+      ),
+    );
   }
 
   @override
