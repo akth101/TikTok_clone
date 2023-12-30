@@ -128,3 +128,6 @@ class TikTokApp extends StatelessWidget {
 //그래서 flex_color_scheme을 사용할 것이다. 진작 좀 가르쳐주지
 //themesplayground에서 미리 싸악 볼수도 있음
 //심지어 theme를 커스터마이즈할수도 있음 미쳤다
+
+//navigator에는 ver.1이 있고 ver.2가 있다.
+//ver.2가 왜 생겼는지 이해하는 것이 중요하다.

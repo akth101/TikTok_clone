@@ -11,9 +11,17 @@ import 'package:tiktok/utils.dart';
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
 
-  void _onSignUpTap(BuildContext context) {
-    Navigator.of(context)
+  void _onSignUpTap(BuildContext context) async {
+    //push는 future를 리턴하기 때문에 결과를 await할 수 있음
+    //pop에서 뭔가 데이터를 보냈다면 이렇게 받을 수 있음
+    final result = await Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => const LoginScreen()));
+    print(result);
+
+    //유저가 이 페이지로 돌아왔는지 알고 싶으면 그냥 이렇게 하면 됨
+    await Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const LoginScreen()));
+    print("user come back");
   }
 
   void _onEmailTap(BuildContext context) {
@@ -101,9 +109,10 @@ class SignUpScreen extends StatelessWidget {
               ),
             ),
           ),
+          //원래 이자리는 bottomAppBar자리였는데 material 3에서는
+          //못 쓴다고 해서 Container로 바꿨음
           bottomNavigationBar: Container(
-            // elevation: 2,
-            //darkMode일 때 color가 Null이면 자동을 dartTheme이 사용됨
+            //darkMode일 때 color가 Null이면 자동으로 dartTheme이 사용됨
             color: isDarkMode(context) ? null : Colors.grey.shade50,
             child: Padding(
               padding: const EdgeInsets.only(

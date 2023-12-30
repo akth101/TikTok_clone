@@ -9,6 +9,7 @@ class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   void _onSignUpTap(BuildContext context) {
+    //이전 스크린으로 hello라는 데이터를 보내주는 거임
     Navigator.of(context).pop();
   }
 
