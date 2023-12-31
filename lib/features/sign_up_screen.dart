@@ -8,42 +8,31 @@ import 'package:tiktok/features/authentication/username_screen.dart';
 import 'package:tiktok/features/authentication/login_screen.dart';
 import 'package:tiktok/features/authentication/widgets/auth_button.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tiktok/features/authentication/widgets/email_screen.dart';
 import 'package:tiktok/utils.dart';
 
 class SignUpScreen extends StatelessWidget {
+  static String routeName = "/";
+
   const SignUpScreen({super.key});
 
   void _onSignUpTap(BuildContext context) async {
-    Navigator.of(context).pushNamed("/login");
+    final result = Navigator.of(context).pushNamed("/login");
+    print(result);
   }
 
   //이번 강의의 목표
   //Navigator.of(context).pushNamed("/username");
   //이런 식으로 페이지를 넘기는 것
   void _onEmailTap(BuildContext context) {
-    // Navigator.of(context).push(
-    //   //pageRouteBuilder는 화면 전환 애니메이션을 미세조정할 수 있게 해 준다.
-    //   PageRouteBuilder(
-    //     transitionDuration: const Duration(seconds: 1),
-    //     reverseTransitionDuration: const Duration(seconds: 1),
-    //     pageBuilder: (context, animation, secondaryAnimation) =>
-    //         const UserNameScreen(),
-    //     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-    //       final offsetAnimation =
-    //       //offset에서 x축은 첫 번째, y축은 두 번째
-    //       //-1은 100퍼센트 위로, 1은 100퍼센트 아래로라는 뜻
-    //           Tween(begin: const Offset(0, -1), end: Offset.zero)
-    //               .animate(animation);
-    //       final opacityAnimation =
-    //           Tween(begin: 0.5, end: 0.8).animate(animation);
-    //       return SlideTransition(
-    //         position: offsetAnimation,
-    //         child: FadeTransition(
-    //           opacity: animation,
-    //           child: child,
-    //         ),
-    //       );
-    //     },
+    //context를 아래와 같은 형식으로 사용하는 걸 inherited Widget이라고 한다.
+    Navigator.of(context).pushNamed(UserNameScreen.routeName);
+
+    //이렇게도 쓸 수 있다.
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(
+    //     builder: (context) => const SignUpScreen(),
     //   ),
     // );
   }

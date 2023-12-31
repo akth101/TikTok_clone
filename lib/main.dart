@@ -5,6 +5,7 @@ import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
 import 'package:tiktok/features/authentication/login_screen.dart';
 import 'package:tiktok/features/authentication/username_screen.dart';
+import 'package:tiktok/features/authentication/widgets/email_screen.dart';
 import 'package:tiktok/features/inbox/activity_screen.dart';
 import 'package:tiktok/features/onboarding/interests_screen.dart';
 import 'package:tiktok/features/sign_up_screen.dart';
@@ -104,11 +105,12 @@ class TikTokApp extends StatelessWidget {
           indicatorColor: Colors.white,
         ),
       ),
-      initialRoute: "/",
+      initialRoute: SignUpScreen.routeName,
       routes: {
-        "/": (context) => const SignUpScreen(),
-        "/username": (context) => const UserNameScreen(),
-        "/login": (context) => const LoginScreen(),
+        SignUpScreen.routeName: (context) => const SignUpScreen(),
+        UserNameScreen.routeName: (context) => const UserNameScreen(),
+        LoginScreen.routName: (context) => const LoginScreen(),
+        EmailScreen.routeName: (context) => const EmailScreen(),
       },
     );
   }

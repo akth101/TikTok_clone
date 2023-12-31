@@ -4,7 +4,15 @@ import 'package:tiktok/constants/sizes.dart';
 import 'package:tiktok/features/authentication/password_screen.dart';
 import 'package:tiktok/features/authentication/widgets/form_button.dart';
 
+class EmailScreenArgs {
+  final String username;
+
+  EmailScreenArgs({required this.username});
+}
+
 class EmailScreen extends StatefulWidget {
+  //routeName은 아래 State가 아니라 StatefulWidget에 만들어줘야 한다.
+  static String routeName = "/email";
   const EmailScreen({super.key});
 
   @override
@@ -38,7 +46,8 @@ class _EmailScreenState extends State<EmailScreen> {
   String? _isEmailValid() {
     if (_email.isEmpty) return null;
     final regExp = RegExp(
-        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+    );
     if (!regExp.hasMatch(_email)) {
       return "Email not valid";
     }
@@ -61,6 +70,8 @@ class _EmailScreenState extends State<EmailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as EmailScreenArgs;
+    print(args.username);
     return GestureDetector(
       onTap: _onScaffoldTap,
       child: Scaffold(
@@ -112,9 +123,11 @@ class _EmailScreenState extends State<EmailScreen> {
               ),
               Gaps.v16,
               GestureDetector(
-                  onTap: _onSubmit,
-                  child: FormButton(
-                      disabled: _email.isEmpty || _isEmailValid() != null)),
+                onTap: _onSubmit,
+                child: FormButton(
+                  disabled: _email.isEmpty || _isEmailValid() != null,
+                ),
+              ),
             ],
           ),
         ),
