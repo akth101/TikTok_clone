@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
+import 'package:tiktok/features/authentication/login_screen.dart';
+import 'package:tiktok/features/authentication/username_screen.dart';
 import 'package:tiktok/features/inbox/activity_screen.dart';
 import 'package:tiktok/features/onboarding/interests_screen.dart';
 import 'package:tiktok/features/sign_up_screen.dart';
@@ -102,7 +104,12 @@ class TikTokApp extends StatelessWidget {
           indicatorColor: Colors.white,
         ),
       ),
-      home: const SignUpScreen(),
+      initialRoute: "/",
+      routes: {
+        "/": (context) => const SignUpScreen(),
+        "/username": (context) => const UserNameScreen(),
+        "/login": (context) => const LoginScreen(),
+      },
     );
   }
 }

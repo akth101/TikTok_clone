@@ -6,6 +6,7 @@ import 'package:tiktok/features/authentication/widgets/auth_button.dart';
 import 'package:tiktok/features/authentication/widgets/login_form_screen.dart';
 
 class LoginScreen extends StatelessWidget {
+  static String routName = "/login";
   const LoginScreen({super.key});
 
   void _onSignUpTap(BuildContext context) {

@@ -12,6 +12,7 @@ class UserNameScreen extends StatefulWidget {
 }
 
 class _UserNameScreenState extends State<UserNameScreen> {
+  static String routeName = "/username";
   final TextEditingController _userNameController = TextEditingController();
 
   @override
@@ -96,8 +97,9 @@ class _UserNameScreenState extends State<UserNameScreen> {
             ),
             Gaps.v16,
             GestureDetector(
-                onTap: _onNextTap,
-                child: FormButton(disabled: _username.isEmpty)),
+              onTap: _onNextTap,
+              child: FormButton(disabled: _username.isEmpty),
+            ),
           ],
         ),
       ),

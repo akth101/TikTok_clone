@@ -14,37 +14,38 @@ class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
 
   void _onSignUpTap(BuildContext context) async {
-    final result = await Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const LoginScreen()));
-    print(result);
+    Navigator.of(context).pushNamed("/login");
   }
 
+  //이번 강의의 목표
+  //Navigator.of(context).pushNamed("/username");
+  //이런 식으로 페이지를 넘기는 것
   void _onEmailTap(BuildContext context) {
-    Navigator.of(context).push(
-      //pageRouteBuilder는 화면 전환 애니메이션을 미세조정할 수 있게 해 준다.
-      PageRouteBuilder(
-        transitionDuration: const Duration(seconds: 1),
-        reverseTransitionDuration: const Duration(seconds: 1),
-        pageBuilder: (context, animation, secondaryAnimation) =>
-            const UserNameScreen(),
-        transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          final offsetAnimation =
-              //offset에서 x축은 첫 번째, y축은 두 번째
-              //-1은 100퍼센트 위로, 1은 100퍼센트 아래로라는 뜻
-              Tween(begin: const Offset(0, -1), end: Offset.zero)
-                  .animate(animation);
-          final opacityAnimation =
-              Tween(begin: 0.5, end: 0.8).animate(animation);
-          return SlideTransition(
-            position: offsetAnimation,
-            child: FadeTransition(
-              opacity: animation,
-              child: child,
-            ),
-          );
-        },
-      ),
-    );
+    // Navigator.of(context).push(
+    //   //pageRouteBuilder는 화면 전환 애니메이션을 미세조정할 수 있게 해 준다.
+    //   PageRouteBuilder(
+    //     transitionDuration: const Duration(seconds: 1),
+    //     reverseTransitionDuration: const Duration(seconds: 1),
+    //     pageBuilder: (context, animation, secondaryAnimation) =>
+    //         const UserNameScreen(),
+    //     transitionsBuilder: (context, animation, secondaryAnimation, child) {
+    //       final offsetAnimation =
+    //       //offset에서 x축은 첫 번째, y축은 두 번째
+    //       //-1은 100퍼센트 위로, 1은 100퍼센트 아래로라는 뜻
+    //           Tween(begin: const Offset(0, -1), end: Offset.zero)
+    //               .animate(animation);
+    //       final opacityAnimation =
+    //           Tween(begin: 0.5, end: 0.8).animate(animation);
+    //       return SlideTransition(
+    //         position: offsetAnimation,
+    //         child: FadeTransition(
+    //           opacity: animation,
+    //           child: child,
+    //         ),
+    //       );
+    //     },
+    //   ),
+    // );
   }
 
   @override
