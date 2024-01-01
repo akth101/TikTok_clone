@@ -7,7 +7,8 @@ import 'package:tiktok/features/settings/settings_screen.dart';
 import 'package:tiktok/features/users/widgets/persistent_tabbar.dart';
 
 class UserProfileScreen extends StatefulWidget {
-  const UserProfileScreen({super.key});
+  final String username;
+  const UserProfileScreen({super.key, required this.username});
 
   @override
   State<UserProfileScreen> createState() => _UserProfileScreenState();
@@ -35,7 +36,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
             headerSliverBuilder: (context, innerboxIsScrolled) {
               return [
                 SliverAppBar(
-                  title: const Text("니꼬"),
+                  title: Text(widget.username),
                   // backgroundColor: Colors.black,
                   actions: [
                     IconButton(
@@ -54,20 +55,20 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                   child: Column(
                     children: [
                       Gaps.v20,
-                      const CircleAvatar(
+                      CircleAvatar(
                         radius: 50,
-                        foregroundImage: NetworkImage(
+                        foregroundImage: const NetworkImage(
                           "https://avatars.githubusercontent.com/u/113513607?v=4",
                         ),
-                        child: Text("니꼬"),
+                        child: Text(widget.username),
                       ),
                       Gaps.v20,
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text(
-                            "@니꼬",
-                            style: TextStyle(
+                          Text(
+                            "@${widget.username}",
+                            style: const TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: Sizes.size18,
                             ),
