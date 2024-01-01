@@ -36,7 +36,7 @@ class SignUpScreen extends StatelessWidget {
   //이런 식으로 페이지를 넘기는 것
   void _onEmailTap(BuildContext context) {
     //context를 아래와 같은 형식으로 사용하는 걸 inherited Widget이라고 한다.
-    context.push(UserNameScreen.routeName);
+    context.push("/users/lynn?show=likes");
 
     //이렇게도 쓸 수 있다.
     // Navigator.push(
