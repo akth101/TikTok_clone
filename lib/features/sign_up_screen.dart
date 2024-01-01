@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
 import 'package:tiktok/features/authentication/username_screen.dart';
@@ -16,9 +17,18 @@ class SignUpScreen extends StatelessWidget {
 
   const SignUpScreen({super.key});
 
-  void _onSignUpTap(BuildContext context) async {
-    final result = Navigator.of(context).pushNamed("/login");
-    print(result);
+  void _onLoginTap(BuildContext context) async {
+    //GoRouter를 설치했기 때문에 context에서 Push 메서드를 사용할 수 있는 거임
+
+    context.push(LoginScreen.routName);
+    //push는 이전 화면들의 스택 위에 새 화면을 쌓는다.
+    //그래서 뒤로 가기같은 개념이 있다.
+    // context.push(LoginScreen.routName);
+
+    //go는 그런 개념이 아니다.
+    //그냥 보내버리기만 할 뿐이다.
+    //실제로 go를 사용하면 뒤로가기 버튼이 자동으로 생성되지 않는다.
+    // context.go(LoginScreen.routName);
   }
 
   //이번 강의의 목표
@@ -26,7 +36,7 @@ class SignUpScreen extends StatelessWidget {
   //이런 식으로 페이지를 넘기는 것
   void _onEmailTap(BuildContext context) {
     //context를 아래와 같은 형식으로 사용하는 걸 inherited Widget이라고 한다.
-    Navigator.of(context).pushNamed(UserNameScreen.routeName);
+    context.push(UserNameScreen.routeName);
 
     //이렇게도 쓸 수 있다.
     // Navigator.push(
@@ -133,7 +143,7 @@ class SignUpScreen extends StatelessWidget {
                   const Text('Already have an account'),
                   Gaps.h5,
                   GestureDetector(
-                    onTap: () => _onSignUpTap(context),
+                    onTap: () => _onLoginTap(context),
                     child: Text(
                       'Log in',
                       style: TextStyle(

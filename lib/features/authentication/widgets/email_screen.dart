@@ -4,6 +4,11 @@ import 'package:tiktok/constants/sizes.dart';
 import 'package:tiktok/features/authentication/password_screen.dart';
 import 'package:tiktok/features/authentication/widgets/form_button.dart';
 
+//왜 이렇게 굳이 클래스 하나 더 만들어서 인자를 받냐면
+//EmailScreen이 인자를 직접 받는다면
+//main.dart에서 routes 매핑할 때 인자를 줘야 하기 때문
+//몽말인지 알지?
+//모르겠으면 직접 해보셈
 class EmailScreenArgs {
   final String username;
 

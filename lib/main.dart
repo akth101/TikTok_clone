@@ -10,6 +10,7 @@ import 'package:tiktok/features/inbox/activity_screen.dart';
 import 'package:tiktok/features/onboarding/interests_screen.dart';
 import 'package:tiktok/features/sign_up_screen.dart';
 import 'package:tiktok/features/tab_navigation/main_navigation_screen.dart';
+import 'package:tiktok/router.dart';
 
 void main() async {
   //Flutter framework를 이용해 앱이 시작하기 전에 state를 어떤 식으로든
@@ -36,7 +37,8 @@ class TikTokApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: router,
       //오른쪽 상단에 deug 표시를 없애고 싶을 때 사용
       debugShowCheckedModeBanner: false,
       title: 'TikTok Clone',
@@ -105,13 +107,6 @@ class TikTokApp extends StatelessWidget {
           indicatorColor: Colors.white,
         ),
       ),
-      initialRoute: SignUpScreen.routeName,
-      routes: {
-        SignUpScreen.routeName: (context) => const SignUpScreen(),
-        UserNameScreen.routeName: (context) => const UserNameScreen(),
-        LoginScreen.routName: (context) => const LoginScreen(),
-        EmailScreen.routeName: (context) => const EmailScreen(),
-      },
     );
   }
 }
